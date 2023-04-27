@@ -21,17 +21,21 @@ contract SimpleBank {
 
     function withdraw (uint256 amount) public {
         uint256 balance = s_depositorsToBalance[msg.sender];
-        if (amount < balance) revert NOT_ENOUGH_FUNDS_IN_ACCOUNT();
+        if (balance < amount) revert NOT_ENOUGH_FUNDS_IN_ACCOUNT();
         (bool success, ) = msg.sender.call{value: amount}("");
         if (!success) revert FAILED_TO_SEND_ETHER();
         s_depositorsToBalance[msg.sender] -= amount;
     }
 
-    function checkBalance(address depositorAddress) public view returns (uint256) {
-        return s_depositorsToBalance[depositorAddress];
-    }
-
     function getMinimumDepositUsd() public view returns (uint256) {
         return i_minimumDepositUsd;        
+    }
+
+    function getDepositor(uint256 index) public view returns (address) {
+        return s_depositors[index];
+    }
+
+    function getDepositorBalance(address depositorAddress) public view returns (uint256) {
+        return s_depositorsToBalance[depositorAddress];
     }
 }
