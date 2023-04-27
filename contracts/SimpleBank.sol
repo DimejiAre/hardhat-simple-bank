@@ -17,7 +17,7 @@ contract SimpleBank {
     AggregatorV3Interface immutable i_priceFeed;
 
     constructor(uint256 minimumDepositUsd, address ethUsdPriceFeedAddress) {
-        i_minimumDepositUsd = minimumDepositUsd;
+        i_minimumDepositUsd = minimumDepositUsd * 1e18;
         i_priceFeed = AggregatorV3Interface(ethUsdPriceFeedAddress);
     }
 
