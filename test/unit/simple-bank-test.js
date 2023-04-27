@@ -1,5 +1,5 @@
 const { deployments, getNamedAccounts, network, ethers } = require('hardhat')
-const { assert } = require('chai')
+const { assert, expect } = require('chai')
 const { networkConfig } = require('../../helper-hardhat-config')
 
 describe("SimpleBank", function () {
@@ -24,6 +24,10 @@ describe("SimpleBank", function () {
             depositValue = ethers.utils.parseEther("0.1")
             const tx = await simpleBank.deposit({value: depositValue})
             await tx.wait(1)
+        })
+        it("reverts if the deposit is too small", async function () {
+            depositValue = ethers.utils.parseEther("0.01")
+            await expect(simpleBank.deposit({value: depositValue})).to.be.revertedWithCustomError(simpleBank,"DEPOSIT_MORE_FUNDS")
         })
         it("saves the depositors address", async function () {
             const depositor = await simpleBank.getDepositor(0)
