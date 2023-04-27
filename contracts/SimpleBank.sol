@@ -11,7 +11,7 @@ contract SimpleBank {
     mapping (address => uint256) s_depositorsToBalance;
 
     constructor(uint256 minimumDepositUsd) {
-        i_minimumDepositUsd = minimumDepositUsd;
+        i_minimumDepositUsd = minimumDepositUsd * 1e18;
     }
 
     function deposit () public payable {
