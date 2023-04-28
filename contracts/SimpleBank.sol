@@ -21,6 +21,14 @@ contract SimpleBank {
         i_priceFeed = AggregatorV3Interface(ethUsdPriceFeedAddress);
     }
 
+    fallback() external payable {
+        deposit();
+    }
+
+    receive() external payable {
+        deposit();
+    }
+
     function deposit () public payable {
         uint256 priceInUsd = msg.value.getConversionRate(i_priceFeed);
         if (priceInUsd < i_minimumDepositUsd) revert DEPOSIT_MORE_FUNDS();
