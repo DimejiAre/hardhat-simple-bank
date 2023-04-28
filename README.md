@@ -10,9 +10,6 @@ This project is a smart contract that implements the functionality of a simple b
   - [Testing](#testing)
     - [Test Coverage](#test-coverage)
 - [Deployment to a testnet or mainnet](#deployment-to-a-testnet-or-mainnet)
-- [Thank you!](#thank-you)
-
-This project is apart of the Hardhat FreeCodeCamp video.
 
 # Getting Started
 
@@ -67,5 +64,3 @@ yarn hardhat coverage
 ```
 yarn hardhat deploy --network sepolia
 ```
-
-# Thank you!
