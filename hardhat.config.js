@@ -14,6 +14,9 @@ module.exports = {
       blockConfirmations: 6
     }
   },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY
+  },
   namedAccounts:{
     deployer:{
       default: 0
